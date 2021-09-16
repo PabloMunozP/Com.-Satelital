@@ -20,20 +20,25 @@ def elevacion(Le,le,Ls,ls,rs):
     
     #Calcular gamma segun la ecuacion 1
     # 1.- cos(gamma) = cos(Le)*cos(Ls)*cos(ls-le)+sin(Le)*sin(Ls)
-    cos_gamma = (m.cos(Le) * m.cos(Ls) * m.cos(ls-le)) + ( m.sin(Le)*m.sin(Ls) )
-    gamma=m.acos(cos_gamma)#en radian
+    # cos_gamma = (m.cos(Le) * m.cos(Ls) * m.cos(ls-le)) + ( m.sin(Le)*m.sin(Ls) )
+    gamma=m.acos(m.cos(Le) * m.cos(Ls) * m.cos(ls-le) +  m.sin(Le)*m.sin(Ls) )#en radian
+    # gamma = np.arccos( np.cos(np.deg2rad(Le))*np.cos(np.deg2rad(Ls))*np.cos(np.deg2rad(ls-le)) + np.sin(np.deg2rad(Le))*np.sin(np.deg2rad(Ls)) )
 
-    print('coseno: ', cos_gamma, 'gamma: ', gamma )
+
+    print('gamma: ', m.degrees(gamma))
 
     #radio tierra
     re= 6378.137 #KM
     #Calcular elevacion segun ecuacion 2
     #2.- cos(El) = sin(gamma) / (1+ (re/rs)**2 - 2(re/rs)*cos_gamma)**2
-    cos_elev = m.sin(gamma) / ( 1 + (re/rs)**2 - (2*(re/rs) * m.cos(gamma)) )**0.5 
-    elev=m.acos(cos_elev)
-    print('coseno: ', cos_elev, 'elev ', elev )
+    # cos_elev = m.sin(gamma) / ( 1 + (re/rs)**2 - (2*(re/rs) * m.cos(gamma)) )**0.5 
+    elev=m.acos(m.sin(gamma) / m.sqrt( 1 + (re/rs)**2 - (2*(re/rs) * m.cos(gamma)) ))
+    # elevation = np.arccos( np.sin(np.deg2rad(gamma)) / np.sqrt(1+(6378.137/rs)**(2) -2*(6378.137/rs)*np.cos(np.deg2rad(gamma))) )
+    print('elev ', elev )
 
     print('grados:', m.degrees(elev))
 
 
-elevacion(-33.42,-70.56,-0.08,98.06,35789.91)
+# elevacion(-33.03932,-71.62725,-0.03,83.08,35808.61)#-54.3
+# elevacion(-33.03932,-71.62725,0.00,128.27,3577.21)#-56.8
+elevacion(-33.03932,-71.62725,0.03,-100.85,35787.5)#40.4
