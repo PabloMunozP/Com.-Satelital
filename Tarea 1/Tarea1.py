@@ -40,6 +40,37 @@ def elevacion(Le,le,Ls,ls,rs):
 
     print('grados:', m.degrees(elev))
 
+def azimut(Le,le,Ls,ls):
+    Le=Le * m.pi/180
+    le=le* m.pi/180
+    Ls=Ls* m.pi/180
+    ls=ls* m.pi/180
+
+    #print(Le,le,Ls,ls)
+
+    B = ls - le
+
+    alpha = m.atan(m.tan(abs(B))/m.sin(Le))
+
+    alpha += m.pi # borrar e ir probando 
+
+    print(B)
+    print(alpha)
+
+    if Le < 0 and B < 0:
+        az = alpha
+        print(az*180/m.pi)
+    if Le < 0 and B > 0:
+        az = 2*m.pi - alpha
+        print(az*180/m.pi)
+    if Le > 0 and B < 0:
+        az = m.pi + alpha
+        print(az*180/m.pi)
+    if Le > 0 and B > 0:
+        az = m.pi - alpha
+        print(az*180/m.pi)
+
+
 
 # elevacion(-33.03932,-71.62725,-0.03,83.08,35808.61)#-54.3
 elevacion(-33.03932,-71.62725,0.00,128.27,3577.21)#-56.8
