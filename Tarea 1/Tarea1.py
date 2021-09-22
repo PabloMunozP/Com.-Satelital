@@ -25,7 +25,7 @@ def elevacion(Le,le,Ls,ls,rs):
     # gamma = np.arccos( np.cos(np.deg2rad(Le))*np.cos(np.deg2rad(Ls))*np.cos(np.deg2rad(ls-le)) + np.sin(np.deg2rad(Le))*np.sin(np.deg2rad(Ls)) )
 
 
-    print('gamma: ', m.degrees(gamma))
+    # print('gamma: ', m.degrees(gamma))
 
     #radio tierra
     re= 6378.137 #KM
@@ -35,8 +35,8 @@ def elevacion(Le,le,Ls,ls,rs):
     result= (m.sin(gamma) / m.sqrt( 1 + (re/rs)**2 - (2*(re/rs) * m.cos(gamma)) ))
     elev=m.acos(m.sin(gamma) / m.sqrt( 1 + (re/rs)**2 - (2*(re/rs) * m.cos(gamma)) ))
     # elevation = np.arccos( np.sin(np.deg2rad(gamma)) / np.sqrt(1+(6378.137/rs)**(2) -2*(6378.137/rs)*np.cos(np.deg2rad(gamma))) )
-    print('elevacion con acos: ', elev )
-    print('elevacion antes acos:', result)
+    # print('elevacion con acos: ', elev )
+    # print('elevacion antes acos:', result)
 
     print('grados:', m.degrees(elev))
 
@@ -54,8 +54,8 @@ def azimut(Le,le,Ls,ls):
 
     alpha += m.pi # borrar e ir probando 
 
-    print(B)
-    print(alpha)
+    # print(B)
+    # print(alpha)
 
     if Le < 0 and B < 0:
         az = alpha
@@ -73,9 +73,14 @@ def azimut(Le,le,Ls,ls):
 
 
 # elevacion(-33.03932,-71.62725,-0.03,83.08,35808.61)#-54.3
-elevacion(-33.03932,-71.62725,0.00,128.27,3577.21)#-56.8
+# elevacion(-33.03932,-71.62725,0.00,128.27,3577.21)#-56.8
 # elevacion(-33.03932,-71.62725,0.03,-100.85,35787.5)#40.4
 # elevacion(-33.03932,-71.62725,0.00,17.01,35794.51)#-6.6 AZ=88.7 E
 # elevacion(-33.03932,-71.62725,-0.32,87.33,35783.83)#-55.3 Az=143.9 SE
 # elevacion(-33.03932,-71.62725,-1.90,-98.00,35778.41)#43 da 42.711
 # elevacion(-33.03932,-71.62725,7.75,-169.55,35991.82)#-19.9 da 20.39
+
+
+elevacion(-32.83369,-70.59827,-0.18,87.40,35771.53)
+
+azimut(-32.83369,-70.59827,-0.18,87.40)
